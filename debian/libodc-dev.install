@@ -1,0 +1,4 @@
+/usr/include/odc/*	/usr/include/${DEB_HOST_MULTIARCH}/odc
+usr/lib/*/cmake/odc/*
+usr/lib/*/pkgconfig/odc.pc
+usr/lib/*/lib*.so

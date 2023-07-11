@@ -1,0 +1,2 @@
+complete -W "compare count header import index ls mdset merge set split sql help " -f odc-0d
+complete -W "compare count header import index ls mdset merge set split sql help " -f odc
