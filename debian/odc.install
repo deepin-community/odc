@@ -1,0 +1,2 @@
+usr/bin/odc*
+debian/bash_completion.d/*      /usr/share/bash-completion/completions/

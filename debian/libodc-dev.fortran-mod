@@ -1,0 +1,8 @@
+usr/module/odc/fapi_encode_tests.mod
+usr/module/odc/fapi_general_tests.mod
+usr/module/odc/fapi_read_tests.mod
+usr/module/odc/fapi_usage_examples_tests.mod
+usr/module/odc/odc.mod
+usr/module/odc/odc_c_binding.mod
+usr/module/odc/odc_config.mod
+usr/include/odc_c_binding.mod

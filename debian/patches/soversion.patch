@@ -1,0 +1,54 @@
+--- a/src/fortran/CMakeLists.txt
++++ b/src/fortran/CMakeLists.txt
+@@ -3,6 +3,8 @@
+ 
+                     CONDITION   HAVE_FORTRAN
+ 
++		    VERSION    0d
++		    
+                     SOURCES
+                                 # Legacy:
+ 
+--- a/src/odc/CMakeLists.txt
++++ b/src/odc/CMakeLists.txt
+@@ -152,7 +152,8 @@
+ 
+ ecbuild_add_library( TARGET odccore
+                      INSTALL_HEADERS
+-                        LISTED
++                     LISTED
++		     VERSION 0d
+                      HEADER_DESTINATION
+                         ${INSTALL_INCLUDE_DIR}/odc
+                      SOURCES
+@@ -168,6 +169,7 @@
+ ecbuild_add_library(
+     TARGET          fodc
+     CONDITION       HAVE_FORTRAN
++    VERSION         0d
+     SOURCES         api/odc.f90
+                     ${CMAKE_CURRENT_BINARY_DIR}/odc_config.f90
+     PUBLIC_INCLUDES $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/module>
+--- a/src/odc/tools/CMakeLists.txt
++++ b/src/odc/tools/CMakeLists.txt
+@@ -81,12 +81,14 @@
+ 
+ ecbuild_add_library( TARGET     odctools
+                      INSTALL_HEADERS LISTED
++		     VERSION    0d
+                      HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/odc/tools
+                      SOURCES    ${odctools_src_files}
+                      TEMPLATES  ${odctools_templates}
+                      PUBLIC_LIBS odccore )
+ 
+ ecbuild_add_library( TARGET     odctest
++		     VERSION    0d
+                      #INSTALL_HEADERS LISTED
+                      #HEADER_DESTINATION ${INSTALL_INCLUDE_DIR}/odc/tools
+                      SOURCES    ${odctest_src_files}
+@@ -97,4 +99,5 @@
+ 
+ ecbuild_add_executable( TARGET    odc
+                         SOURCES   odc.cc
++			VERSION   0d
+                         LIBS      odccore odctools odctest )

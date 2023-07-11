@@ -1,5 +1,92 @@
-template-repository (1.0-1) unstable; urgency=medium
+odc (1.4.6-5) unstable; urgency=medium
 
-  * Initial release
+  * Rebuild against dh-fortran-mod for gfortran-13
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Alastair McKinstry <mckinstry@debian.org>  Tue, 20 Jun 2023 13:33:50 +0100
+
+odc (1.4.6-4) unstable; urgency=medium
+
+  * Standards-Version:  4.6.2
+  * Fix for FTBFS with g++ 13. Closes: #1037796
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Thu, 15 Jun 2023 19:23:43 +0100
+
+odc (1.4.6-3) experimental; urgency=medium
+
+  * Re-enable tests
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Wed, 18 Jan 2023 15:28:48 +0000
+
+odc (1.4.6-2) unstable; urgency=medium
+
+  * Rebuild with dh-fortran-mod 0.27. Closes: #1017708
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Sat, 17 Sep 2022 11:19:56 +0100
+
+odc (1.4.6-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards-Version: 4.6.1
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Fri, 26 Aug 2022 11:02:52 +0100
+
+odc (1.4.5-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add initial bash completions
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Thu, 19 May 2022 19:15:27 +0100
+
+odc (1.4.4-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Wed, 08 Dec 2021 13:38:08 +0000
+
+odc (1.4.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Wed, 27 Oct 2021 08:44:51 +0100
+
+odc (1.4.1-2) unstable; urgency=medium
+
+  * Build on 64-bit only as we depend on eckit which is now 64-bit only
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Mon, 11 Oct 2021 09:57:30 +0100
+
+odc (1.4.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards-Version: 4.6.0
+  * Now ship more fortran .mod files
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Sun, 29 Aug 2021 17:36:26 +0100
+
+odc (1.3.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add versioned B-D on libeckit-dev to >= 1.16.0
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Fri, 26 Mar 2021 16:01:11 +0000
+
+odc (1.2.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add debian/watch file
+  * Standards-Version: 4.5.1
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Thu, 21 Jan 2021 13:18:35 +0000
+
+odc (1.1.0-2) unstable; urgency=medium
+
+  * Append $(FC) to libfodc for fortran versioning
+  * Fix CMake fragments
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Wed, 04 Nov 2020 14:01:28 +0000
+
+odc (1.1.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #973615)
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Mon, 02 Nov 2020 17:00:09 +0000
