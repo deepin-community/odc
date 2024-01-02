@@ -1,3 +1,9 @@
+odc (1.4.6-5deepin1) unstable; urgency=medium
+
+  * update debian/control, add loong64 support.
+
+ -- LiChengGang <lichenggang@uniontech.com>  Tue, 02 Jan 2024 21:28:24 +0800
+
 odc (1.4.6-5) unstable; urgency=medium
 
   * Rebuild against dh-fortran-mod for gfortran-13
