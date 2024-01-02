@@ -16,7 +16,7 @@ Vcs-Git: https://salsa.debian.org:/science-team/odc.git -b debian/latest
 Package: libodc-0d
 Section: libs
 Multi-Arch: same
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha
+Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Observational Database Access library for ECMWF
  ODC is software developed at ECMWF for encoding and processing of
@@ -24,7 +24,7 @@ Description: Observational Database Access library for ECMWF
  command line tools and APIs for C/C++ and Fortran.
 
 Package: odc
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha
+Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
 Multi-Arch: foreign
 Depends: libodc-0d ( = ${binary:Version}), 
   ${shlibs:Depends}, ${misc:Depends}
@@ -38,7 +38,7 @@ Description: Tools for the Observational Data Processing (ODB)
 
 Package: libodc-dev
 Section: libdevel
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha
+Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
 Multi-Arch: same
 Depends: libodc-0d (= ${binary:Version}), odc (= ${binary:Version}), 
   ${misc:Depends}, mpi-default-dev, libeckit-dev
