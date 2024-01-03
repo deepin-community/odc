@@ -2,30 +2,26 @@
 
 #export DH_VERBOSE=1
 
-# FC set to f77 by default in make
-# Read default compiler name unless FC is actually set
-ifeq ($(FC),f77)
-  FC:=$(shell basename $(shell readlink /etc/alternatives/f77))
-endif
+include /usr/share/debhelper/dh-fortran/fortran-support.mk
+
+export FC_DEFAULT
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 TMPDIR:=$(CURDIR)/debian/tmp
 LIBDIR:=/usr/lib/$(DEB_HOST_MULTIARCH)
 
-FORTRAN_VERSION:=$(shell basename $(shell readlink  /usr/bin/$(FC)))
-
 DO_TEST:=true
 
 # The magic debhelper  rule
 %:
-	dh $@ --buildsystem=ecbuild
+	dh $@ --buildsystem=ecbuild --with fortran_mod
 
 BUILD_FLAGS:= -DENABLE_FORTRAN=ON \
 			-DENABLE_RPATHS=OFF \
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		      ${BUILD_FLAGS} -DCMAKE_Fortran_COMPILER=$(FC)
+		      ${BUILD_FLAGS} -DCMAKE_Fortran_COMPILER=$(FC_DEFAULT)
 
 override_dh_auto_test:
 	$(DO_TEST) && ( LD_LIBRARY_PATH=$(CURDIR)/debian/build/lib dh_auto_test  ) || true
@@ -35,13 +31,12 @@ override_dh_dwz:
 
 override_dh_auto_install:
 	dh_auto_install 
-	mv $(TMPDIR)/$(LIBDIR)/libfodc.so.0d $(TMPDIR)/$(LIBDIR)/libfodc-$(FC).so.0d
+	mv $(TMPDIR)/$(LIBDIR)/libfodc.so.0d $(TMPDIR)/$(LIBDIR)/libfodc-$(FC_DEFAULT).so.0d
 	rm $(TMPDIR)/$(LIBDIR)/libfodc.so
-	patchelf  --set-soname libfodc-$(FC).so.0d $(TMPDIR)/$(LIBDIR)/libfodc-$(FC).so.0d
-	#patchelf  --remove-rpath $(TMPDIR)/$(LIBDIR)/libt-gfortran.so.0d
-	dh_link -p libodc-dev $(LIBDIR)/libfodc-$(FC).so.0d $(LIBDIR)/fortran/$(FORTRAN_VERSION)/libfodc.so
-	dh_link -p libodc-dev $(LIBDIR)/libfodc-$(FC).so.0d $(LIBDIR)/libfodc-$(FC).so
+	patchelf  --set-soname libfodc-$(FC_DEFAULT).so.0d $(TMPDIR)/$(LIBDIR)/libfodc-$(FC_DEFAULT).so.0d
+	#patchelf  --remove-rpath $(TMPDIR)/$(LIBDIR)/libt-$(FC_DEFAULT).so.0d
+	dh_link -p libodc-dev $(LIBDIR)/libfodc-$(FC_DEFAULT).so.0d $(LIBDIR)/libfodc-$(FC_DEFAULT).so
 	# Fixup cmake files
 	sed -i -e 's%$${_IMPORT_PREFIX}/include%/usr/include/${DEB_HOST_MULTIARCH}%g' $(TMPDIR)/$(LIBDIR)/cmake/odc/odc-targets.cmake
 	sed -i -e 's%/include/odc%/usr/include/${DEB_HOST_MULTIARCH}/odc%g' $(TMPDIR)/$(LIBDIR)/cmake/odc/odc-targets.cmake
-	sed -i -e 's%libfodc.so%libfodc-${FC}.so%g'   $(TMPDIR)/$(LIBDIR)/cmake/odc/odc-targets-release.cmake
+	sed -i -e 's%libfodc.so%libfodc-${FC_DEFAULT}.so%g'   $(TMPDIR)/$(LIBDIR)/cmake/odc/odc-targets-release.cmake

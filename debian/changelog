@@ -1,8 +1,26 @@
-odc (1.4.6-5deepin1) unstable; urgency=medium
+odc (1.5.0-2) unstable; urgency=medium
 
-  * update debian/control, add loong64 support.
+  * Rebuild to revert FMODDIR to libdir
+  * B-D on dh-fortran-mod > 0.31
+  * Use fortran-support.mk
+  * Add libodc-dev.links with variable substitution
 
- -- LiChengGang <lichenggang@uniontech.com>  Tue, 02 Jan 2024 21:28:24 +0800
+ -- Alastair McKinstry <mckinstry@debian.org>  Sun, 31 Dec 2023 13:14:10 +0000
+
+odc (1.5.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * g++-13.patch now upstream; removed
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Wed, 13 Dec 2023 08:00:53 +0000
+
+odc (1.4.6-6) unstable; urgency=medium
+
+  * Build with dep architecture-is-64-bit. Closes: #1057681
+  * Ensure fortran libs are in fortran-abi-flavour directory
+  * Bump eckit dep to >= 1.4.6
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Sat, 09 Dec 2023 08:35:05 +0000
 
 odc (1.4.6-5) unstable; urgency=medium
 
