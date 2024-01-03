@@ -3,10 +3,10 @@ Section: utils
 Priority: optional
 Maintainer: Alastair McKinstry <mckinstry@debian.org>
 Build-Depends: debhelper-compat (=13),
- dh-sequence-fortran-mod,
+ dh-fortran-mod (>= 0.31),
+ architecture-is-64-bit,
  ecbuild (>= 3.3.0-3),
- gfortran | fortran-compiler, 
- libeckit-dev (>= 1.16.0-1~),
+ libeckit-dev (>= 1.4.6-1~),
  patchelf
 Standards-Version: 4.6.2
 Homepage: https://github.com/ecmwf/odc
@@ -16,7 +16,7 @@ Vcs-Git: https://salsa.debian.org:/science-team/odc.git -b debian/latest
 Package: libodc-0d
 Section: libs
 Multi-Arch: same
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
+Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Observational Database Access library for ECMWF
  ODC is software developed at ECMWF for encoding and processing of
@@ -24,7 +24,7 @@ Description: Observational Database Access library for ECMWF
  command line tools and APIs for C/C++ and Fortran.
 
 Package: odc
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
+Architecture: any
 Multi-Arch: foreign
 Depends: libodc-0d ( = ${binary:Version}), 
   ${shlibs:Depends}, ${misc:Depends}
@@ -38,12 +38,12 @@ Description: Tools for the Observational Data Processing (ODB)
 
 Package: libodc-dev
 Section: libdevel
-Architecture: amd64 arm64 ppc64 mips64el ppc64el s390x riscv64 sparc64  kfreebsd-amd64 ia64 alpha loong64
+Architecture: any
 Multi-Arch: same
 Depends: libodc-0d (= ${binary:Version}), odc (= ${binary:Version}), 
-  ${misc:Depends}, mpi-default-dev, libeckit-dev
+  ${misc:Depends}, mpi-default-dev, libeckit-dev, ${fortran:Depends}
 Conflicts: libodb-dev
-Recommends: pkg-config, fortran-compiler
+Recommends: pkg-config, ${fortran:Recommends}
 Description: Observational Data processing for meteorology
  ODC is a software developed at ECMWF for encoding and processing of
  observational data. It includes a SQL filtering and statistics engine, 
